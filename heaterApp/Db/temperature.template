@@ -1,0 +1,174 @@
+record(bi, "$(NAME):isEnabled")
+{
+ 	field(DESC, "is the heater enabled")
+	field(DTYP, "s7nodave")
+	field(INP,  "@bakeout-plc (PG=digital) DB10.DBX$(is-enabled) bool")
+	field(PINI, "YES")
+	field(ZNAM, "DISABLED") 	field(ZSV, "NO_ALARM")
+	field(ONAM, "ENABLED") field(OSV, "NO_ALARM")
+	field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(NAME):enable")
+{
+    field(DESC, " enable heater to start")
+    field(DTYP, "s7nodave")
+    field(HIGH, "1")
+    field(OUT,  "@bakeout-plc  DB10.DBX$(enable) bool")
+    field(ZNAM, " ")
+    field(ONAM, "Enabling")
+
+ }
+
+
+record(bo, "$(NAME):disable")
+{
+    field(DESC, " disables heater operation")
+    field(DTYP, "s7nodave")
+    field(HIGH, "1")
+    field(OUT,  "@bakeout-plc  DB10.DBX$(disable) bool")
+    field(ZNAM, " ")
+    field(ONAM, "Disabling")
+
+ }
+
+record(ai, "$(NAME):getTemp")
+{
+	field(DESC, "read thermocuople temperature")
+	field(DTYP, "s7nodave")
+	field(INP,  "@bakeout-plc (PG=analog) DB10.DBD$(get-temp) float")
+	field(EGU,  "C")
+	field(VAL,  "0")
+	field(PINI, "YES")
+	field(SCAN, "I/O Intr")
+}
+
+record(bi, "$(NAME):getStatus")
+{
+ 	field(DESC, "is heater On/Off")
+	field(DTYP, "s7nodave")
+	field(INP,  "@bakeout-plc (PG=digital) $(status) bool")
+	field(PINI, "YES")
+	field(ZNAM, "OFF") 	field(ZSV, "NO_ALARM")
+	field(ONAM, "ON-Heating") field(OSV, "NO_ALARM")
+	field(SCAN, "I/O Intr")
+}
+
+record(ao, "$(NAME):setSetPoint")
+{
+	field(DESC, "sets interlock temperature")
+	field(DTYP, "s7nodave")
+	field(OUT,  "@bakeout-plc  DB10.DBD$(set-point) float")
+	field(EGU,  "C")
+	field(VAL,  "0")
+	field(PINI, "YES")
+}
+
+
+record(ai, "$(NAME):getSetPoint")
+{
+	field(DESC, "read thermocuople temperature")
+	field(DTYP, "s7nodave")
+	field(INP,  "@bakeout-plc (PG=analog) DB10.DBD$(get-point) float")
+	field(EGU,  "C")
+	field(VAL,  "0")
+	field(PINI, "YES")
+	field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(NAME):getIncPoint")
+{
+	field(DESC, "read thermocuople temperature")
+	field(DTYP, "s7nodave")
+	field(INP,  "@bakeout-plc (PG=analog) DB10.DBD$(get-inc) float")
+	field(EGU,  "C")
+	field(VAL,  "0")
+	field(PINI, "YES")
+	field(SCAN, "I/O Intr")
+}
+
+record(ao, "$(NAME):setRate")
+{
+	field(DESC, "sets Heat Rate temperature")
+	field(DTYP, "s7nodave")
+	field(OUT,  "@bakeout-plc  DB10.DBD$(set-rate) float")
+	field(EGU,  "C")
+	field(VAL,  "0")
+	field(PINI, "YES")
+}
+
+record(ai, "$(NAME):getRate")
+{
+	field(DESC, "read heat rate temperature")
+	field(DTYP, "s7nodave")
+	field(INP,  "@bakeout-plc (PG=analog) DB10.DBD$(get-rate) float")
+	field(EGU,  "C")
+	field(VAL,  "0")
+	field(PINI, "YES")
+	field(SCAN, "I/O Intr")
+}
+
+record(ao, "$(NAME):setInterlock")
+{
+	field(DESC, "sets interlock temperature")
+	field(DTYP, "s7nodave")
+	field(OUT,  "@bakeout-plc  DB10.DBD$(set-interlock) float")
+	field(EGU,  "C")
+	field(VAL,  "0")
+	field(PINI, "YES")
+}
+
+record(ai, "$(NAME):getInterlock")
+{
+	field(DESC, "read interlock temperature")
+	field(DTYP, "s7nodave")
+	field(INP,  "@bakeout-plc (PG=analog) DB10.DBD$(get-interlock) float")
+	field(EGU,  "C")
+	field(VAL,  "0")
+	field(PINI, "YES")
+	field(SCAN, "I/O Intr")
+}
+
+record(bi, "$(NAME):isInterlock")
+{
+	field(DESC, "check if there is temperature interlock")
+	field(DTYP, "s7nodave")
+	field(INP,  "@bakeout-plc (PG=digital) DB10.DBX$(is-interlock) bool")
+	field(PINI, "YES")
+	field(ZNAM, "Interlocked") 	field(ZSV, "MAJOR")
+	field(ONAM, "NO Interlock") field(OSV, "NO_ALARM")
+	field(SCAN, "I/O Intr")
+}
+record(bi, "$(NAME):isSat")
+{
+	field(DESC, "check if there is temperature Saturation")
+	field(DTYP, "s7nodave")
+	field(INP,  "@bakeout-plc (PG=digital) DB10.DBX$(is-sat) bool")
+	field(PINI, "YES")
+	field(ZNAM, "No Interlock") 	field(ZSV, "NO_ALARM")
+	field(ONAM, "Interlocked") field(OSV, "MAJOR")
+	field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(NAME):disableSat")
+{
+	field(DESC, "disables global temperature Saturation")
+	field(DTYP, "s7nodave")
+	field(OUT,  "@bakeout-plc DB10.DBX$(enb-sat) bool")
+	field(PINI, "YES")
+	field(ZNAM, "saturation enabled") 	
+	field(ONAM, "saturation disabled") 
+}
+
+record(ai, "$(NAME):getTime")
+{
+	field(DESC, "read remaning time of 10 minutes")
+	field(DTYP, "s7nodave")
+	field(INP,  "@bakeout-plc (PG=analog) DB10.DBD$(get-time) float")
+	field(EGU,  "Min")
+	field(VAL,  "0")
+	field(PINI, "YES")
+	field(SCAN, "I/O Intr")
+}
+
+

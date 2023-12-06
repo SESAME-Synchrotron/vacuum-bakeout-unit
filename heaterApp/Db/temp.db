@@ -1,0 +1,36 @@
+record(bi, "HEATER2:isEnabled")
+{
+ 	field(DESC, "is the heater enabled")
+	field(DTYP, "s7nodave")
+	field(INP,  "@bakeout-plc (PG=digital) DB10.DBX59.3 bool")
+	field(PINI, "YES")
+	field(ZNAM, "DISABLED") 	field(ZSV, "NO_ALARM")
+	field(ONAM, "ENABLED") field(OSV, "NO_ALARM")
+	field(SCAN, "I/O Intr")
+}
+
+record(bi, "HEATER2:isInterlock")
+{
+ 	field(DESC, "is the heater enabled")
+	field(DTYP, "s7nodave")
+	field(INP,  "@bakeout-plc (PG=digital) M200.1 bool")
+	field(PINI, "YES")
+	field(ZNAM, "DISABLED") 	field(ZSV, "NO_ALARM")
+	field(ONAM, "ENABLED") field(OSV, "NO_ALARM")
+	field(SCAN, "I/O Intr")
+}
+
+
+
+record(ai, "HEATER2:getTemp")
+
+{
+	field(DESC, "read thermocuople temperature")
+	field(DTYP, "s7nodave")
+	field(INP,  "@bakeout-plc (PG=analog) DB10.DBD46 float")
+	field(EGU,  "C")
+	field(VAL,  "0")
+	field(PINI, "YES")
+	field(SCAN, "I/O Intr")
+}
+

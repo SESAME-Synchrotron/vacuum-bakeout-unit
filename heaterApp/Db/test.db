@@ -1,0 +1,8 @@
+record(bi,"switch:PB")
+{
+	field(DTYP, "s7nodave")
+	field(INP,  "@S7PLC I0.0")
+	field(SCAN, "1 second")
+	field(ONAM, "ON")
+	field(ZNAM, "OFF")
+}

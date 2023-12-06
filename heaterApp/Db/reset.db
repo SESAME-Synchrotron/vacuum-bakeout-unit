@@ -1,0 +1,8 @@
+record (bo, "Heaters:reset")
+{
+	field(OUT, "@bakeout-plc M13.0 bool")
+	field(HIGH, "1")
+	field(DTYP, "s7nodave")
+	field(ZNAM, "")
+	field(ONAM, "Resetting")
+}
